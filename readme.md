@@ -12,7 +12,7 @@ Trialling argocd to test self healing continuous delivery (CD) and "kind" for lo
 
 # 1. Is Kind kind to me?
 
-Err... yep. So far no even minor hitch. I start the service, then use `kubectl` as normal.
+Err... yep. So far not even minor hitch. I start the service, then use `kubectl` as normal.
 Kind is a wrapper that allows one to run local K8s and use normal `kubectl` commands. 
 
 

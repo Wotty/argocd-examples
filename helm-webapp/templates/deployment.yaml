@@ -1,33 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.appName }}
+  name: helm-webapp
   labels:
-    app: {{ .Values.appName }}
+    app: helm-webapp
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.replicaCount | default 1 }}
   selector:
     matchLabels:
-      app: {{ .Values.appName }}
-      tier: frontend
+      app: helm-webapp
   template:
     metadata:
       labels:
-        app: {{ .Values.appName }}
-        tier: frontend
-    spec: # Pod spec
+        app: helm-webapp
+    spec:
       containers:
-      - name: mycontainer
-        image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
-        ports:
-        - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: {{ .Values.configmap.name }}
-        resources:
-          requests:
-            memory: "16Mi" 
-            cpu: "50m"    # 500milliCPUs (1/2 CPU)
-          limits:
-            memory: "128Mi"
-            cpu: "100m"
+        - name: nginx
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: html
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: html
+          configMap:
+            name: helm-webapp-nginx-html

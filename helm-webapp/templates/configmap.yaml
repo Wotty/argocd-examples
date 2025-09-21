@@ -1,8 +1,20 @@
-kind: ConfigMap 
-apiVersion: v1 
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: {{ .Values.configmap.name }}
+  name: helm-webapp-nginx-html
+  labels:
+    app: helm-webapp
 data:
-  BG_COLOR: '#12181b'
-  FONT_COLOR: '#FFFFFF'
-  CUSTOM_HEADER: {{ .Values.configmap.data.CUSTOM_HEADER }}
+  index.html: |
+    <!doctype html>
+    <html>
+      <head>
+        <meta charset="utf-8" />
+        <title>Hello from Helm</title>
+      </head>
+      <body>
+        <h1>{{ .Values.message }}</h1>
+        <p>Release: {{ .Release.Name }}</p>
+        <p>Namespace: {{ .Release.Namespace }}</p>
+      </body>
+    </html>
