@@ -59,7 +59,7 @@ argocd app create webapp-kustom-prod \
 I am beginning to understand the different DR options.
 
 # 4. Trial DR
-
+<!-- ToDo -->
 
 # 6. Command Cheat sheet
 Also good to know
@@ -75,8 +75,3 @@ argocd app rollback <appname> #Rollback to a previous version
 argocd app set <appname> #Set the application’s configuration.
 argocd app delete <appname> #Delete an Argo CD application.
 ```
-
-
-
-
-
