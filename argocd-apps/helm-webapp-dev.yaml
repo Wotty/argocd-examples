@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-webapp-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Wotty/argocd-examples.git
+    path: helm-webapp
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-dev.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      # selfHeal: true
