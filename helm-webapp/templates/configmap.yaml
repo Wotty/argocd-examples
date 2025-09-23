@@ -13,7 +13,7 @@ data:
         <title>Hello from Helm</title>
       </head>
       <body>
-        <h1>{{ .Values.message }}</h1>
+        <h1>{{ .Values.configmap.data.message }}</h1>
         <p>Release: {{ .Release.Name }}</p>
         <p>Namespace: {{ .Release.Namespace }}</p>
       </body>

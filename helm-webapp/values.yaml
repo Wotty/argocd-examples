@@ -5,7 +5,7 @@ port: 80
 configmap:
   name: helm-webapp-configmap-v1
   data:
-    CUSTOM_HEADER: 'This app was deployed with helm!'
+    message: 'This app was deployed with helm!'
 
 image:
   repository: nginx
@@ -15,6 +15,3 @@ image:
 service:
   type: LoadBalancer
   port: 80
-
-# optional: change the index.html message
-message: "Hello, world from Helm!"
